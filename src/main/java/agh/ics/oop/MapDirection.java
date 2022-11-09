@@ -5,7 +5,6 @@ public enum MapDirection {
     WEST,
     NORTH,
     EAST;
-
     public String toString() {
         return switch (this) {
             case NORTH -> "Północ";
@@ -37,7 +36,5 @@ public enum MapDirection {
             case NORTH -> new Vector2d(0, 1);
             case EAST -> new Vector2d(1, 0);
         };
-
     }
-
 }

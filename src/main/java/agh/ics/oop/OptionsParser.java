@@ -4,17 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OptionsParser {
-    public static Object[] parse(String[] directions){
-        List<MoveDirection> Moves = new ArrayList<>();
+    public MoveDirection[] parse(String[] directions){
+        List<MoveDirection> moves = new ArrayList<>();
         for (String direction : directions) {
             switch (direction){
-                case "f", "forward" -> Moves.add(MoveDirection.FORWARD);
-                case "b", "backward" -> Moves.add(MoveDirection.BACKWARD);
-                case "r", "right" -> Moves.add(MoveDirection.RIGHT);
-                case "l", "left" -> Moves.add(MoveDirection.LEFT);
+                case "f", "forward" -> moves.add(MoveDirection.FORWARD);
+                case "b", "backward" -> moves.add(MoveDirection.BACKWARD);
+                case "r", "right" -> moves.add(MoveDirection.RIGHT);
+                case "l", "left" -> moves.add(MoveDirection.LEFT);
             }
         }
-        return Moves.toArray();
+        return moves.toArray(new MoveDirection[0]);
     }
 }
-

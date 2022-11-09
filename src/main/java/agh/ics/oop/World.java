@@ -2,31 +2,11 @@ package agh.ics.oop;
 
 public class World {
     public static void main(String[] args) {
-//        check move method
-        Animal crocodile = new Animal();
-        System.out.println(crocodile.toString());
-        System.out.println(crocodile.getPosition());
-        crocodile.move(MoveDirection.RIGHT);
-        crocodile.move(MoveDirection.FORWARD);
-        crocodile.move(MoveDirection.FORWARD);
-        crocodile.move(MoveDirection.FORWARD);
-        System.out.println(crocodile.getPosition());
-        System.out.println(crocodile.getDirection());
-        System.out.println();
-//        check parse method
-        String[] example_moves = new String[]{"f","right","backwaard","b","left","ok", "forward"};
-        Object[] actual_moves = OptionsParser.parse(example_moves);
-        for (Object actual_move : actual_moves) {System.out.println(actual_move);}
-
-//        System.out.println("start");
-//        run(change(args));
-//        System.out.println("stop");
-//        Vector2d position1 = new Vector2d(1,2);
-//        System.out.println(position1);
-//        Vector2d position2 = new Vector2d(-2,1);
-//        System.out.println(position2);
-//        System.out.println(position1.add(position2));
-
+        MoveDirection[] directions = new OptionsParser().parse(args);
+        IWorldMap map = new RectangularMap(10, 5);
+        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
+        IEngine engine = new SimulationEngine(directions, map, positions);
+        engine.run();
     }
     static void run(Direction[] arr){
         for (Direction s : arr) {

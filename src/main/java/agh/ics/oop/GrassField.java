@@ -9,11 +9,9 @@ public class GrassField extends AbstractWorldMap{
     private final int grassNum;
     private final int bound;
     private final List<Vector2d> possiblePlaces = new ArrayList<>();
-    private final List<Grass> grassList;
 
     public GrassField(int grassNum){
         this.grassNum = grassNum;
-        this.grassList = new ArrayList<>();
         this.bound = (int) Math.sqrt(grassNum * 10);
         this.leftBorder = new Vector2d(0, 0);
         this.rightBorder = new Vector2d(bound, bound);

@@ -1,8 +1,5 @@
 package agh.ics.oop;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class RectangularMap extends AbstractWorldMap {
     private final Vector2d leftBorder;
     private final Vector2d rightBorder;
@@ -17,11 +14,11 @@ public class RectangularMap extends AbstractWorldMap {
         return position.precedes(rightBorder) && position.follows(leftBorder) && !this.isOccupied(position);
     }
 
-    protected Vector2d getRightBorder(){
+    public Vector2d getRightBorder(){
         return rightBorder;
     }
 
-    protected Vector2d getLeftBorder(){
+    public Vector2d getLeftBorder(){
         return leftBorder;
     }
 }

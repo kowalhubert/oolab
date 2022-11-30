@@ -5,20 +5,16 @@ import java.util.Map;
 
 public abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObserver{
 
-    private final MapVisualiser mapVisualizer;
-    private final Map<Vector2d, Animal> animals;
-    protected abstract Vector2d getLeftBorder();
-    protected abstract Vector2d getRightBorder();
-
-    public AbstractWorldMap(){
-        this.mapVisualizer = new MapVisualiser(this);
-        this.animals = new HashMap<>();
-    }
+    private final MapVisualiser mapVisualizer = new MapVisualiser(this);
+    protected final Map<Vector2d, Animal> animals = new HashMap<>();
+    protected MapBoundary mapBoundary = new MapBoundary();
 
     @Override
     public boolean place(Animal animal) {
         if (this.canMoveTo(animal.getPosition())){
             animals.put(animal.getPosition(), animal);
+            mapBoundary.addPosition(animal.getPosition());
+            animal.addObserver(this);
             return true;
         }
         else {
@@ -40,8 +36,11 @@ public abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObse
         Animal animal = animals.get(oldPosition);
         animals.remove(oldPosition);
         animals.put(newPosition, animal);
+        mapBoundary.positionChanged(oldPosition, newPosition);
     }
 
+    public abstract Vector2d getLeftBorder();
+    public abstract Vector2d getRightBorder();
     @Override
     public String toString(){
         return this.mapVisualizer.draw(getLeftBorder(), getRightBorder());

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OptionsParser {
-    public MoveDirection[] parse(String[] directions){
+    public MoveDirection[] parse(String[] directions) throws IllegalArgumentException{
         List<MoveDirection> moves = new ArrayList<>();
         for (String direction : directions) {
             switch (direction){

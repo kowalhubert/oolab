@@ -8,18 +8,17 @@ public class Animal implements IMapElement{
     private final IWorldMap map;
     private MapDirection direction;
     private Vector2d position;
-    private final List<IPositionChangeObserver> observerList = new ArrayList<IPositionChangeObserver>();
+    private final List<IPositionChangeObserver> observerList;
 
     public Animal(IWorldMap map) {
-        this.map = map;
-        this.direction = MapDirection.NORTH;
+        this(map, new Vector2d(2,2));
     }
 
     public Animal(IWorldMap map, Vector2d initialPosition) {
         this.map = map;
         this.position = initialPosition;
         this.direction = MapDirection.NORTH;
-        addObserver((IPositionChangeObserver) map);
+        this.observerList = new ArrayList<IPositionChangeObserver>();
     }
 
     @Override
